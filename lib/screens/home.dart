@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  final Function(int) onNavigate;
+
+  const Home({super.key, required this.onNavigate});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
       body: Center(
         child: ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/about');
-          },
+          onPressed: () => onNavigate(2), // Navigate to 'About' page index
           child: const Text('Go to About'),
         ),
       ),
