@@ -31,7 +31,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
       ),
-      title: const Text('UV App'),
+      title: Text(title),
       centerTitle: true,
       backgroundColor: Colors.red,
       actions: [
