@@ -1,5 +1,7 @@
 # This branch is meant to use as a starter template for future projects
 
+test 1
+
 # flutter_application_1
 
 A new Flutter project.
