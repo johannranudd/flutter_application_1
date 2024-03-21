@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 
 class Products extends StatelessWidget {
-  const Products({super.key});
+  final Function(int) onNavigate;
+
+  const Products({super.key, required this.onNavigate});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text('Products Page'),
+        child: ElevatedButton(
+          onPressed: () => onNavigate(2), // Navigate to 'About' page index
+          child: const Text('Go to About'),
+        ),
       ),
     );
   }

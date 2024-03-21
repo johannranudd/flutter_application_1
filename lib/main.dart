@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import './screens/home.dart';
-import './screens/products.dart';
-import './screens/about.dart';
-import './widgets/custom_app_bar.dart';
-import './widgets/custom_bottom_navigation_bar.dart';
+import 'package:flutter_application_1/screens/home.dart';
+import 'package:flutter_application_1/screens/products.dart';
+import 'package:flutter_application_1/screens/about.dart';
+import 'package:flutter_application_1/widgets/custom_app_bar.dart';
+import 'package:flutter_application_1/widgets/custom_bottom_navigation_bar.dart';
 
 void main() => runApp(const MyApp());
 
@@ -70,8 +70,8 @@ class _BaseWidgetState extends State<BaseWidget> {
         },
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          Home(onNavigate: _onItemTapped),
-          const Products(),
+          const Home(),
+          Products(onNavigate: _onItemTapped),
           const About(),
         ], // Prevents swiping to side pages
       ),
