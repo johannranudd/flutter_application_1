@@ -70,8 +70,8 @@ class _BaseWidgetState extends State<BaseWidget> {
         },
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          Home(onNavigate: _onItemTapped),
-          const Products(),
+          const Home(),
+          Products(onNavigate: _onItemTapped),
           const About(),
         ], // Prevents swiping to side pages
       ),
