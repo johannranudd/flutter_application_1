@@ -26,7 +26,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.info),
-          label: 'About',
+          label: 'Location',
         ),
       ],
     );

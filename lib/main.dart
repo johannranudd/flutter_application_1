@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/home.dart';
 import 'package:flutter_application_1/screens/products.dart';
-import 'package:flutter_application_1/screens/about.dart';
+import 'package:flutter_application_1/screens/location.dart';
 import 'package:flutter_application_1/widgets/custom_app_bar.dart';
 import 'package:flutter_application_1/widgets/custom_bottom_navigation_bar.dart';
 
@@ -29,7 +29,7 @@ Widget _buildAppBar(int selectedIndex) {
       title = 'Products';
       break;
     case 2:
-      title = 'About';
+      title = 'Location';
       break;
     default:
       title = 'App';
@@ -72,7 +72,7 @@ class _BaseWidgetState extends State<BaseWidget> {
         children: [
           const Home(),
           Products(onNavigate: _onItemTapped),
-          const About(),
+          Location(),
         ], // Prevents swiping to side pages
       ),
       bottomNavigationBar: CustomBottomNavigationBar(

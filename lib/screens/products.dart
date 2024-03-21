@@ -11,7 +11,7 @@ class Products extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () => onNavigate(2), // Navigate to 'About' page index
-          child: const Text('Go to About'),
+          child: const Text('Go to Location'),
         ),
       ),
     );
