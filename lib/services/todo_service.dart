@@ -1,6 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../models/todo.dart';
+import 'package:flutter_application_1/models/todo.dart';
 
 class TodoService {
   static Future<List<Todo>> fetchTodos() async {
