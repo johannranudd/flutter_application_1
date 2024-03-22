@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-// import 'package:url_launcher/url_launcher.dart';
-// import 'package:url_launcher/url_launcher_string.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_application_1/services/weather_service.dart';
 
 class Location extends StatefulWidget {
   const Location({super.key});
@@ -13,8 +12,36 @@ class Location extends StatefulWidget {
 
 class _LocationState extends State<Location> {
   String locationMessage = "Current location of the user";
+  String weatherInfo = "Press the button to fetch weather data";
+  bool isLocationFetched = false;
+
+  String uvIndex = "";
   late String lat;
   late String long;
+
+  void _fetchWeather() async {
+    if (!isLocationFetched || lat.isEmpty || long.isEmpty) {
+      setState(() {
+        weatherInfo =
+            "Location not available. Please fetch the location first.";
+      });
+      return;
+    }
+
+    try {
+      final weatherData = await WeatherService.fetchWeather(lat, long);
+      setState(() {
+        weatherInfo =
+            "Temp: ${weatherData.tempC}°C, Description: ${weatherData.weatherDescription}";
+        uvIndex = "UV Index: ${weatherData.uvIndex}";
+      });
+    } catch (error) {
+      setState(() {
+        weatherInfo = "Failed to fetch weather data: $error";
+      });
+      debugPrint("Failed to fetch weather data: $error");
+    }
+  }
 
   // Getting the current location
   Future<Position> _getCurrentLocation() async {
@@ -35,6 +62,7 @@ class _LocationState extends State<Location> {
       return Future.error(
           "Location permissions are permanently denied, we cannot request data");
     }
+
     return await Geolocator.getCurrentPosition();
   }
 
@@ -79,6 +107,7 @@ class _LocationState extends State<Location> {
                 long = '${value.longitude}';
                 setState(() {
                   locationMessage = 'Latitude: $lat , Longitude: $long';
+                  isLocationFetched = true;
                 });
                 _liveLocation();
               });
@@ -91,6 +120,17 @@ class _LocationState extends State<Location> {
               _openMap(lat, long);
             },
             child: const Text("Open Google Map"),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: isLocationFetched
+                ? _fetchWeather
+                : null, // Disable button if location not fetched
+            child: const Text("Fetch Weather"),
+          ),
+          const SizedBox(height: 20),
+          Column(
+            children: [Text(weatherInfo), Text(uvIndex)],
           )
         ],
       )),

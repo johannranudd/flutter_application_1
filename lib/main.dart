@@ -4,8 +4,12 @@ import 'package:flutter_application_1/screens/products.dart';
 import 'package:flutter_application_1/screens/location.dart';
 import 'package:flutter_application_1/widgets/custom_app_bar.dart';
 import 'package:flutter_application_1/widgets/custom_bottom_navigation_bar.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() => runApp(const MyApp());
+Future<void> main() async {
+  await dotenv.load(fileName: ".env");
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -35,7 +39,6 @@ Widget _buildAppBar(int selectedIndex) {
       title = 'App';
   }
 
-  // Return an instance of CustomAppBar
   return CustomAppBar(title: title);
 }
 
@@ -72,7 +75,7 @@ class _BaseWidgetState extends State<BaseWidget> {
         children: [
           const Home(),
           Products(onNavigate: _onItemTapped),
-          Location(),
+          const Location(),
         ], // Prevents swiping to side pages
       ),
       bottomNavigationBar: CustomBottomNavigationBar(

@@ -50,8 +50,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 onPressed: () {
                   debugPrint("filter action");
                 },
-                icon: const Icon(Icons.filter_list,
-                    color: Colors.white), // Use filter icon
+                icon: const Icon(Icons.filter_list, color: Colors.white),
                 tooltip: 'Filter',
                 padding: const EdgeInsets.all(0),
                 iconSize: 20,
